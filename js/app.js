@@ -41,10 +41,11 @@ function initGentleScroll(target, getPos, setPos, getMax, factor){
   let current = getPos();
   let goal = current;
   target.addEventListener('wheel', (e) => {
-    if(e.target.closest && e.target.closest('.CodeMirror, .pg-console, .pg-preview-pane')) return;
+    if(e.target.closest && e.target.closest('.CodeMirror, .pg-console, .pg-preview-pane, .terminal-screen')) return;
     e.preventDefault();
     if(!raf) current = getPos();
-    goal = Utils.clamp(goal + e.deltaY * factor, 0, getMax());
+    const max = Math.max(0, getMax());
+    goal = Utils.clamp(goal + e.deltaY * factor, 0, max);
     if(!raf){
       const step = () => {
         current += (goal - current) * 0.22;
@@ -56,6 +57,13 @@ function initGentleScroll(target, getPos, setPos, getMax, factor){
       raf = requestAnimationFrame(step);
     }
   }, { passive: false });
+
+  return {
+    reset(){
+      if(raf){ cancelAnimationFrame(raf); raf = null; }
+      current = goal = getPos();
+    }
+  };
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -63,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   State.load();
   UI.init();
 
-  initGentleScroll(
+  App.windowScroll = initGentleScroll(
     window,
     () => window.scrollY,
     (v) => window.scrollTo(0, v),

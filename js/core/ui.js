@@ -69,6 +69,11 @@ const UI = {
     });
   },
 
+  scrollTopReset(){
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    if(App.windowScroll) App.windowScroll.reset();
+  },
+
   renderRoute(){
     const hash = location.hash || '#/home';
     const m = hash.match(/^#\/lesson\/(.+)$/);
@@ -80,6 +85,7 @@ const UI = {
   },
 
   renderHome(){
+    this.scrollTopReset();
     document.getElementById('breadcrumb').textContent = 'Accueil';
     const content = document.getElementById('content');
     const totalDone = App.FLAT.reduce((acc, f) => acc + State.lessonDoneCount(f.lesson.id), 0);
@@ -169,7 +175,7 @@ const UI = {
         location.hash = `#/lesson/${nextId}`;
       });
     }
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    this.scrollTopReset();
   },
 
   renderExplanation(container, lesson){
