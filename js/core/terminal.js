@@ -298,18 +298,21 @@ const NetworkSim = {
   dnsTable: {
     'code-aventure.fr': '203.0.113.10',
     'ecole.fr': '203.0.113.20',
-    'jeuxenligne.fr': '203.0.113.30'
+    'jeuxenligne.fr': '203.0.113.30',
+    'cible-entrainement.lab': '10.0.0.50'
   },
   portsTable: {
     'code-aventure.fr': [80, 443],
     'ecole.fr': [80, 443],
-    'jeuxenligne.fr': [80, 443, 21]
+    'jeuxenligne.fr': [80, 443, 21],
+    'cible-entrainement.lab': [21, 22, 80, 3306]
   },
   portName(p){
     if(p === 80) return 'HTTP';
     if(p === 443) return 'HTTPS';
     if(p === 21) return 'FTP';
     if(p === 22) return 'SSH';
+    if(p === 3306) return 'MySQL';
     return 'Inconnu';
   },
 
