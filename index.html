@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Aventure — Apprends HTML, CSS &amp; JS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="confetti-layer"></div>
+
+<div id="app">
+
+  <aside id="sidebar">
+    <div class="brand">
+      <div class="brand-mascot">🦊</div>
+      <div class="brand-text">
+        <div class="brand-title">Code Aventure</div>
+        <div class="brand-sub">Le voyage de Daouda</div>
+      </div>
+    </div>
+
+    <div class="xp-card">
+      <div class="xp-row">
+        <span class="xp-star">⭐</span>
+        <span id="xp-total">0</span>
+        <span class="xp-label">XP</span>
+      </div>
+      <div class="xp-bar-track">
+        <div id="xp-bar-fill" class="xp-bar-fill"></div>
+      </div>
+      <div class="xp-level" id="xp-level-label">Niveau 1 — Débutant</div>
+    </div>
+
+    <nav id="chapter-nav"></nav>
+
+    <button id="reset-progress-btn" class="ghost-btn">↺ Recommencer ma progression</button>
+  </aside>
+
+  <div id="main">
+    <header id="topbar">
+      <button id="sidebar-toggle" class="icon-btn" title="Menu">☰</button>
+      <div id="breadcrumb"></div>
+      <div id="mascot-mini" class="mascot-mini">
+        <div class="mascot-face">🦊</div>
+        <div id="mascot-bubble" class="mascot-bubble hidden"></div>
+      </div>
+    </header>
+
+    <main id="content"></main>
+  </div>
+
+</div>
+
+<div id="toast-container"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+
+<script src="js/core/utils.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/core/sandbox.js"></script>
+<script src="js/core/editor.js"></script>
+<script src="js/core/terminal.js"></script>
+<script src="js/core/effects.js"></script>
+<script src="js/core/ui.js"></script>
+
+<script src="js/lessons/chapter1.js"></script>
+<script src="js/lessons/chapter2.js"></script>
+<script src="js/lessons/chapter3.js"></script>
+<script src="js/lessons/chapter4.js"></script>
+<script src="js/lessons/chapter5.js"></script>
+<script src="js/lessons/chapter6.js"></script>
+<script src="js/lessons/chapter7.js"></script>
+<script src="js/lessons/chapter8.js"></script>
+<script src="js/lessons/chapter9.js"></script>
+<script src="js/lessons/chapter10.js"></script>
+<script src="js/lessons/chapter11.js"></script>
+<script src="js/lessons/chapter12.js"></script>
+<script src="js/lessons/chapter13.js"></script>
+
+<script src="js/app.js"></script>
+</body>
+</html>
