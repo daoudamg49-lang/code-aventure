@@ -137,6 +137,7 @@ window.Checks = {
   attrEquals(sel, name, val){ var a = this.attr(sel, name); return a !== null && a.trim().toLowerCase() === String(val).trim().toLowerCase(); },
   hasAttr(sel, name){ var e = document.querySelector(sel); return !!(e && e.hasAttribute(name)); },
   style(sel, prop){ var e = document.querySelector(sel); return e ? getComputedStyle(e)[prop] : null; },
+  pseudoStyle(sel, pseudo, prop){ var e = document.querySelector(sel); return e ? getComputedStyle(e, pseudo)[prop] : null; },
   styleEquals(sel, prop, val){
     var s = this.style(sel, prop); if(s === null || s === undefined) return false;
     return String(s).replace(/\\s+/g,'').toLowerCase() === String(val).replace(/\\s+/g,'').toLowerCase();
