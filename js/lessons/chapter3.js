@@ -67,8 +67,11 @@ const CHAPTER_3 = {
         "<p>Une <strong>variable</strong> est une boîte qui garde une valeur en mémoire, avec un nom. On la crée avec <code>let</code> (si elle peut changer) ou <code>const</code> (si elle ne changera jamais).</p>" },
       { type:'code', code: "let prenom = \"Daouda\";\nconst age = 7;\nconsole.log(prenom);\nconsole.log(age);" },
       { type:'text', heading:"Les types de base", html:
-        "<p>Une variable peut contenir du <strong>texte</strong> (entre guillemets, ex: <code>\"salut\"</code>), un <strong>nombre</strong> (sans guillemets, ex: <code>7</code>), ou un <strong>booléen</strong> (<code>true</code> ou <code>false</code>).</p>" },
-      { type:'tip', html:"Utilise <code>const</code> par défaut, et <code>let</code> seulement si tu sais que la valeur va changer plus tard !" },
+        "<p>Une variable peut contenir du <strong>texte</strong> (entre guillemets, ex: <code>\"salut\"</code>), un <strong>nombre</strong> (sans guillemets, ex: <code>7</code>), ou un <strong>booléen</strong> (<code>true</code> ou <code>false</code>, qui répond à une question par vrai ou faux).</p>" },
+      { type:'text', heading:"Le template string : insérer une variable dans une phrase", html:
+        "<p>Pour écrire une phrase QUI CONTIENT une variable, utilise un <strong>template string</strong> : au lieu de guillemets <code>\" \"</code>, utilise des <strong>accents graves</strong> <code>&#96; &#96;</code> (la touche à gauche du 1, avec Shift). À l'intérieur, <code>${nomDeLaVariable}</code> insère automatiquement sa valeur dans le texte.</p>" },
+      { type:'code', code: "let prenom = \"Daouda\";\nlet age = 7;\nconsole.log(`Je m'appelle ${prenom} et j'ai ${age} ans.`);\n// Affiche : Je m'appelle Daouda et j'ai 7 ans." },
+      { type:'tip', html:"Utilise <code>const</code> par défaut, et <code>let</code> seulement si tu sais que la valeur va changer plus tard ! Et retiens bien : accents graves <code>&#96; &#96;</code> pour un template string, pas des guillemets classiques." },
       { type:'demo', tabs:[{ type:'js', starter:"let animal = \"renard\";\nconst nombrePattes = 4;\nconsole.log(animal);\nconsole.log(nombrePattes);" }], showConsole:true }
     ],
     exercises: {
@@ -294,6 +297,9 @@ const CHAPTER_3 = {
         "<p>Une <strong>fonction</strong> est un bloc de code réutilisable, avec un nom. On la crée avec <code>function</code>, on peut lui donner des <strong>paramètres</strong> (des informations qu'elle reçoit), et elle peut <code>return</code> (renvoyer) un résultat.</p>" },
       { type:'code', code: "function direBonjour(prenom) {\n  return \"Bonjour \" + prenom + \" !\";\n}\nconsole.log(direBonjour(\"Daouda\"));" },
       { type:'tip', html:"Une fonction, c'est comme une recette de cuisine : tu lui donnes des ingrédients (paramètres), elle te rend un plat (le résultat avec return) !" },
+      { type:'text', heading:"% : le reste d'une division", html:
+        "<p>L'opérateur <code>%</code> (modulo) donne le <strong>reste</strong> d'une division. <code>7 % 2</code> vaut <code>1</code> (7 divisé par 2 = 3, reste 1). Astuce très utilisée : un nombre est <strong>pair</strong> si <code>nombre % 2 === 0</code> (aucun reste en le divisant par 2).</p>" },
+      { type:'code', code: "console.log(7 % 2);   // 1 (reste de 7÷2)\nconsole.log(10 % 2);  // 0 (10 est pair, aucun reste)\nconsole.log(9 % 3);   // 0 (9 est un multiple de 3)" },
       { type:'demo', tabs:[{ type:'js', starter:"function addition(a, b) {\n  return a + b;\n}\nconsole.log(addition(3, 4));\nconsole.log(addition(10, 20));" }], showConsole:true }
     ],
     exercises: {
@@ -406,6 +412,9 @@ const CHAPTER_3 = {
         "<p><code>document.querySelector(\"sélecteur\")</code> attrape un élément de ta page (comme en CSS : <code>#id</code>, <code>.classe</code>, ou une balise). Ensuite, <code>.textContent</code> permet de lire ou changer son texte.</p>" },
       { type:'code', code: "let titre = document.querySelector(\"#titre\");\ntitre.textContent = \"Nouveau titre !\";" },
       { type:'tip', html:"<code>.innerHTML</code> fonctionne comme <code>.textContent</code>, mais permet aussi d'insérer de vraies balises HTML, comme <code>&lt;strong&gt;</code> !" },
+      { type:'text', heading:"Attraper PLUSIEURS éléments avec querySelectorAll et forEach", html:
+        "<p><code>document.querySelectorAll(\"sélecteur\")</code> attrape TOUS les éléments qui correspondent (pas un seul), sous forme d'une liste. Pour faire quelque chose sur chacun d'eux, on utilise <code>.forEach(function(element) { ... })</code> : cette fonction se répète automatiquement pour chaque élément de la liste, un peu comme une boucle <code>for</code> spécialisée. La fonction que tu écris entre parenthèses est appelée une <strong>fonction de rappel</strong> (callback) : tu ne l'appelles pas toi-même, c'est <code>.forEach</code> qui l'appelle pour toi, une fois par élément.</p>" },
+      { type:'code', code: "let paragraphes = document.querySelectorAll(\"p\");\nparagraphes.forEach(function(p) {\n  p.style.color = \"blue\";\n});\n// Chaque <p> de la page devient bleu, un par un" },
       { type:'demo', tabs:[
         { type:'html', starter:"<p id=\"message\">Texte original</p>", readonly:true },
         { type:'js', starter:"let message = document.querySelector(\"#message\");\nmessage.textContent = \"Texte changé par JavaScript !\";" }
@@ -467,6 +476,9 @@ const CHAPTER_3 = {
         "<p><code>addEventListener(\"click\", function() { ... })</code> permet d'exécuter du code quand un élément est cliqué ! C'est ce qui rend une page vraiment interactive.</p>" },
       { type:'code', code: "let bouton = document.querySelector(\"#btn\");\nbouton.addEventListener(\"click\", function() {\n  console.log(\"Cliqué !\");\n});" },
       { type:'tip', html:"Le code à l'intérieur de la fonction ne s'exécute PAS tout de suite : il attend patiemment que quelqu'un clique !" },
+      { type:'text', heading:"Inverser un booléen avec ! (NOT)", html:
+        "<p>Le point d'exclamation <code>!</code> devant une valeur booléenne l'<strong>inverse</strong> : <code>!true</code> vaut <code>false</code>, et <code>!false</code> vaut <code>true</code>. Écrit <code>variable = !variable;</code>, ça bascule une variable entre vrai et faux à chaque fois — exactement ce qu'il faut pour un interrupteur !</p>" },
+      { type:'code', code: "let allume = false;\nallume = !allume;  // allume devient true\nconsole.log(allume);\nallume = !allume;  // allume redevient false\nconsole.log(allume);" },
       { type:'demo', tabs:[
         { type:'html', starter:"<button id=\"btn\">Clique-moi</button>\n<p id=\"resultat\"></p>", readonly:true },
         { type:'js', starter:"let btn = document.querySelector(\"#btn\");\nlet resultat = document.querySelector(\"#resultat\");\nbtn.addEventListener(\"click\", function() {\n  resultat.textContent = \"Tu as cliqué !\";\n});" }
@@ -673,6 +685,11 @@ const CHAPTER_3 = {
     explanation: [
       { type:'text', heading:"Le grand projet final !", html:
         "<p>Tu vas créer un vrai mini-jeu : le joueur doit deviner un nombre mystère entre 1 et 10 en tapant sa réponse, et ton code lui dira s'il a gagné, ou si c'est trop grand ou trop petit !</p>" },
+      { type:'text', heading:".value : lire ce qu'un champ contient", html:
+        "<p>Pour un <code>&lt;p&gt;</code> ou un <code>&lt;h1&gt;</code>, on lit/change le texte avec <code>.textContent</code>. Mais pour un <code>&lt;input&gt;</code> (une case où l'utilisateur tape quelque chose), on utilise <code>.value</code> à la place : il contient ce que la personne a tapé.</p>" },
+      { type:'text', heading:"Number() : convertir du texte en nombre", html:
+        "<p>Piège important : <code>input.value</code> est TOUJOURS du texte (une chaîne de caractères), même si l'utilisateur tape des chiffres ! <code>\"7\"</code> (texte) et <code>7</code> (nombre) ne sont pas pareils pour JavaScript. <code>Number(\"7\")</code> convertit le texte <code>\"7\"</code> en vrai nombre <code>7</code>, pour pouvoir le comparer correctement avec <code>&gt;</code>, <code>&lt;</code>, etc.</p>" },
+      { type:'code', code: "let input = document.querySelector(\"#guess\");\n// Si l'utilisateur tape 7 :\nconsole.log(input.value);           // \"7\" (texte, entre guillemets)\nconsole.log(Number(input.value));   // 7 (vrai nombre)\nconsole.log(Number(input.value) === 7); // true !" },
       { type:'tip', html:"Le nombre mystère est déjà préparé dans le code (<code>const MYSTERE = 7;</code>), ne le change pas, sinon les vérifications ne fonctionneront plus !" },
       { type:'demo', tabs:[
         { type:'html', starter:"<input id=\"guess\" type=\"number\" placeholder=\"Ton nombre\">\n<button id=\"valider\">Valider</button>\n<p id=\"feedback\"></p>", readonly:true },
