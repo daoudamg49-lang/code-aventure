@@ -67,6 +67,20 @@ const State = {
     this.save();
   },
 
+  syncUnlocks(){
+    let changed = false;
+    App.FLAT.forEach((f, i) => {
+      if(this.isExerciseDone(f.lesson.id, 'facile')){
+        const next = App.FLAT[i + 1];
+        if(next && !this.data.unlocked[next.lesson.id]){
+          this.data.unlocked[next.lesson.id] = true;
+          changed = true;
+        }
+      }
+    });
+    if(changed) this.save();
+  },
+
   isLessonUnlocked(lessonId, index){
     if(index === 0) return true;
     return !!this.data.unlocked[lessonId];

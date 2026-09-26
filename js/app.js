@@ -69,6 +69,7 @@ function initGentleScroll(target, getPos, setPos, getMax, factor){
 document.addEventListener('DOMContentLoaded', () => {
   App.build();
   State.load();
+  State.syncUnlocks();
   UI.init();
 
   App.windowScroll = initGentleScroll(
